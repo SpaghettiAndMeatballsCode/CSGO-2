@@ -32,13 +32,13 @@ void draw()
   line(x2, y2, x4, y4);
 
   //"Gun"
-  line(792, 507, 1043, 667);
-  line(1043, 667, 1089, 744);
-  line(1089, 744, 1186, 800);
-  line(916, 667, 920, 800);
-  line(916, 667, 837, 800);
-  line(636, 800, 778, 578);
-  line(778, 578, 792, 507);
+  line(width-488, height-293, width-237, height-133);
+  line(width-237, height-133, width-191, height-56);
+  line(width-191, height-56, width-94, height);
+  line(width-364, height-133, width-360, height);
+  line(width-364, height-133, width-443, height);
+  line(width-644, height, width-502, height-222);
+  line(width-502, height-222, width-488, height-293);
 
   //crosshair
   stroke(0, 255, 0);
