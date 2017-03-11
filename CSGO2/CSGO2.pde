@@ -11,7 +11,6 @@ int y4=400;
 int crosshairWidth = 20;
 int taskai=80;
 
-bool test = true;
 void setup()
 {
   size(1280, 800);
