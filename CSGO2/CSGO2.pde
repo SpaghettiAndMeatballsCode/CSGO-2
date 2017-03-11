@@ -13,7 +13,7 @@ int taskai=80;
 
 void setup()
 {
-  size(1600, 900);  //galima bet kokia naudoti (tik ginklas ne ten bus)
+  size(1600, 900);  //galima bet kokia naudoti
   frameRate(60);
   noCursor();
 }
