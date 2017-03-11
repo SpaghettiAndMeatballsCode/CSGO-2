@@ -31,6 +31,8 @@ void draw()
   line(x3,y3,x4,y4);
   line(x1,y1,x3,y3);
   line(x2,y2,x4,y4);
+  
+  //"Gun"
   line(792,507,1043,667);
   line(1043,667,1089,744);
   line(1089,744,1186,800);
@@ -38,6 +40,8 @@ void draw()
   line(916,667,837,800);
   line(636,800,778,578);
   line(778,578,792,507);
+  
+  //crosshair
   stroke(0,255,0);
   line(cross1,cross2+10,cross1+20,cross2+10);
   line(cross1+10,cross2,cross1+10,cross2+20);
