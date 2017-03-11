@@ -14,7 +14,7 @@ int taskai=80;
 
 void setup()
 {
-  size(1980, 1080);
+  size(1280, 800);
   frameRate(60);
   noCursor();
 }
