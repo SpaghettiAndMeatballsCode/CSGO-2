@@ -46,8 +46,8 @@ void draw()
   line(width/2, height/2-crosshairWidth, width/2, height/2+crosshairWidth);
 
 
-  int aimX=640-mouseX;
-  int aimY=400-mouseY;
+  int aimX=(width/2)-mouseX;
+  int aimY=(height/2)-mouseY;
   x1=aimX;
   x2=aimX+720;
   x3=aimX;
