@@ -1,2 +1,2 @@
-# CSGO-2
+# CSGO2
 BLA BLA BLA
