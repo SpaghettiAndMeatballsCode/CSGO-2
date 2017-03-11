@@ -1,4 +1,4 @@
-int x1=280, y1=100;
+int x1=280, y1=100; //<>//
 int x2=1000, y2=100;
 int x3=280, y3=400;
 int x4=1000, y4=400;
@@ -9,7 +9,7 @@ int Y = 50, X = 100;
 void setup()
 {
   size(1024, 600);  //galima bet kokia naudoti
-  frameRate(15);
+  //frameRate(15);
   //noCursor();
 }
 void draw()
@@ -21,20 +21,20 @@ void draw()
   line(0, 0, x1, y1);
   line(width, 0, x2, y2);
   line(x1, y1, x2, y2);
-  floodFill(5, 5, color(255, 255, 255), color(255, 0, 0));
+  floodFill(5, 5, color(255), color(255, 0, 0));
 
-  test = Y*width+X;
+  /*test = Y*width+X;
   loadPixels();
-  /*while(test < width*height && pixels[test] == color(255, 255, 255)) {
+  while(test < width*height && pixels[test] == color(255, 255, 255)) {
    //loadPixels();
    pixels[test] = color(255, 150, 0);
    //println(test);
    //updatePixels();
    test++;
-   }*/
-  //println(test);
+   }
+  println(test);
   test = Y*width+X;
-  updatePixels();
+  updatePixels(); */
 
   line(0, height, x3, y3);
   line(width, height, x4, y4);
@@ -87,57 +87,112 @@ void keyPressed()
   }
 }
 
+// ideja: https://en.wikipedia.org/wiki/Flood_fill
+/*void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali spalva
+ {
+ loadPixels();    //isidedu ekrana i atminti (pixels[])
+ //   vieta masyve = Y*width+X, kur X, Y - koordinates ekrane
+ if (pixels[y*width+x] == with) {   // jei pradiniu koordinaciu spalva lygi pildomai spalvai
+ return;   // baigti funkcija
+ }
+ if (pixels[y*width+x] != what) {   // jei pradiniu koordinaciu spalva nelygi uzpildomai spalvai
+ return;
+ }
+ 
+ int queueSize = 0;
+ int queue[] = new int [width*height];
+ 
+ if (y*width+x < width*height) {
+ queue[0] = y*width+x;
+ queueSize++;
+ }
+ 
+ while (queueSize > 0) {
+ println(queueSize + " is " + pixels[queue[queueSize]] + " = " + what);
+ if (pixels[queue[queueSize]] == what) {
+ int w = queue[0], e = queue[0];
+ while (pixels[w] == what && w > y*width) {
+ w--;
+ }
+ 
+ while (pixels[e] == what && e < (y+1)*width) {
+ e++;
+ }
+ for (int i = w; i <= e; i++) {
+ pixels[i] = with;
+ if (i >= width) {
+ if (pixels[i-width] == what) {
+ queue[queueSize] = i-width;
+ queueSize++;
+ }
+ }
+ if (i <= width*(height-1)) {
+ if (pixels[i+width] == what) {
+ queue[queueSize] = i+width;
+ queueSize++;
+ }
+ }
+ }
+ }
+ for (int i = 1; i < queueSize; i++) {
+ queue[queueSize-1] = queue[queueSize];
+ }
+ queueSize--;
+ }
+ 
+ updatePixels();
+ }*/
+
 void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali spalva
 {
-  loadPixels();    //isidedu ekrana i atminti (pixels[])
-  //   vieta masyve = Y*width+X, kur X, Y - koordinates ekrane
-  if (pixels[y*width+x] == with) {   // jei pradiniu koordinaciu spalva lygi pildomai spalvai
-    return;   // baigti funkcija
-  }
-  if (pixels[y*width+x] != what) {   // jei pradiniu koordinaciu spalva nelygi uzpildomai spalvai
-    return;
-  }
+  if (x >= 0 && y >= 0) {
+    if (what == with) return;
+    loadPixels();    //isidedu ekrana i atminti (pixels[])
+    //   vieta masyve = Y*width+X, kur X, Y - koordinates ekrane
+    if (pixels[y*width+x] == with) {   // jei pradiniu koordinaciu spalva lygi pildomai spalvai
+      return;   // baigti funkcija
+    }
+    if (pixels[y*width+x] != what) {   // jei pradiniu koordinaciu spalva nelygi uzpildomai spalvai
+      return;
+    }
 
-  int queueSize = 0;
-  int queue[] = new int [width*height];
+    int stack[] = new int [width*height];
+    stack[0] = y*width+x; 
+    int stackCount = 1;
 
-  if (y*width+x < width*height) {
-    queue[0] = y*width+x;
-    queueSize++;
-  }
-
-  while (queueSize > 0) {
-    println(queueSize + " is " + pixels[queue[queueSize]] + " = " + what);
-    if (pixels[queue[queueSize]] == what) {
-      int w = queue[0], e = queue[0];
-      while (pixels[w] == what && w > y*width) {
-        w--;
-      }
-
-      while (pixels[e] == what && e < (y+1)*width) {
-        e++;
-      }
-      for (int i = w; i <= e; i++) {
-        pixels[i] = with;
-        if (i >= width) {
-          if (pixels[i-width] == what) {
-            queue[queueSize] = i-width;
-            queueSize++;
+    while (stackCount > 0) {
+      println(stackCount); //<>//
+      if (pixels[stack[0]] == what) {
+        pixels[stack[0]] = with;
+        if (stack[0] > 0) {
+          if (pixels[stack[0] - 1] == what) {
+            stack[stackCount] = stack[0] - 1;
+            stackCount++;
           }
         }
-        if (i <= width*(height-1)) {
-          if (pixels[i+width] == what) {
-            queue[queueSize] = i+width;
-            queueSize++;
+        if (stack[0] < width*(height-1)) {
+          if (pixels[stack[0] + width] == what) {
+            stack[stackCount] = stack[0] + width;
+            stackCount++;
+          }
+        }
+        if (stack[0] < width*height - 1) {
+          if (pixels[stack[0] + 1] == what) {
+            stack[stackCount] = stack[0] + 1;
+            stackCount++;
+          }
+        }
+        if (stack[0] > width) {
+          if (pixels[stack[0] - width] == what) {
+            stack[stackCount] = stack[0] - width;
+            stackCount++;
           }
         }
       }
+      for (int i = 1; i < stackCount; i++) {
+        stack[i-1] = stack[i];
+      }
+      stackCount--;
     }
-    for (int i = 1; i < queueSize; i++) {
-      queue[queueSize-1] = queue[queueSize];
-    }
-    queueSize--;
   }
-
-  updatePixels();
 }
