@@ -143,6 +143,7 @@ void keyPressed()
  updatePixels();
  }*/
 
+// ideja: https://en.wikipedia.org/wiki/Flood_fill
 void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali spalva
 {
   if (x >= 0 && y >= 0) {
@@ -182,7 +183,7 @@ void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali 
             stackCount++;
           }
         }
-        if (stack[0] > width) {
+        if (stack[0] >= width) {
           if (pixels[stack[0] - width] == what) {
             stack[stackCount] = stack[0] - width;
             stackCount++;
