@@ -23,9 +23,9 @@ void draw()
   fill(0, 0, 0);
   stroke(0, 0, 0);
   line(0, 0, x1, y1);
-  line(1280, 0, x2, y2);
-  line(0, 800, x3, y3);
-  line(1280, 800, x4, y4);
+  line(width, 0, x2, y2);
+  line(0, height, x3, y3);
+  line(width, height, x4, y4);
   line(x1, y1, x2, y2);
   line(x3, y3, x4, y4);
   line(x1, y1, x3, y3);
