@@ -1,4 +1,4 @@
-int x1=280, y1=100; //<>//
+int x1=280, y1=100;
 int x2=1000, y2=100;
 int x3=280, y3=400;
 int x4=1000, y4=400;
@@ -96,12 +96,12 @@ void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali 
       return;
     }
 
-    int stack[] = new int [width*height];
+    int stack[] = new int [int(2*height*sqrt(2)+1)]; //<>//
     stack[0] = y*width+x; 
     int stackCount = 1;
+    pixels[stack[0]] = with;
 
     while (stackCount > 0) {
-      pixels[stack[0]] = with;
       if (stack[0] > 0) {
         if ((stack[0] - 1) % width != 0 && pixels[stack[0] - 1] == what) {
           pixels[stack[0] - 1] = with;
