@@ -1,4 +1,4 @@
-int x1=280, y1=100; //<>// //<>// //<>// //<>//
+int x1=280, y1=100; //<>//
 int x2=1000, y2=100;
 int x3=280, y3=400;
 int x4=1000, y4=400;
@@ -58,10 +58,6 @@ void draw()
   line(width/2-crosshairWidth, height/2, width/2+crosshairWidth, height/2);
   line(width/2, height/2-crosshairWidth, width/2, height/2+crosshairWidth);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> floodFillTest
   int aimX=(width/2)-mouseX;
   int aimY=(height/2)-mouseY;
   x1=aimX;
