@@ -83,6 +83,65 @@ void keyPressed()
 }
 
 // ideja: https://en.wikipedia.org/wiki/Flood_fill
+<<<<<<< HEAD
+=======
+/*void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali spalva
+ {
+ loadPixels();    //isidedu ekrana i atminti (pixels[])
+ //   vieta masyve = Y*width+X, kur X, Y - koordinates ekrane
+ if (pixels[y*width+x] == with) {   // jei pradiniu koordinaciu spalva lygi pildomai spalvai
+ return;   // baigti funkcija
+ }
+ if (pixels[y*width+x] != what) {   // jei pradiniu koordinaciu spalva nelygi uzpildomai spalvai
+ return;
+ }
+ 
+ int queueSize = 0;
+ int queue[] = new int [width*height];
+ 
+ if (y*width+x < width*height) {
+ queue[0] = y*width+x;
+ queueSize++;
+ }
+ 
+ while (queueSize > 0) {
+ println(queueSize + " is " + pixels[queue[queueSize]] + " = " + what);
+ if (pixels[queue[queueSize]] == what) {
+ int w = queue[0], e = queue[0];
+ while (pixels[w] == what && w > y*width) {
+ w--;
+ }
+ 
+ while (pixels[e] == what && e < (y+1)*width) {
+ e++;
+ }
+ for (int i = w; i <= e; i++) {
+ pixels[i] = with;
+ if (i >= width) {
+ if (pixels[i-width] == what) {
+ queue[queueSize] = i-width;
+ queueSize++;
+ }
+ }
+ if (i <= width*(height-1)) {
+ if (pixels[i+width] == what) {
+ queue[queueSize] = i+width;
+ queueSize++;
+ }
+ }
+ }
+ }
+ for (int i = 1; i < queueSize; i++) {
+ queue[queueSize-1] = queue[queueSize];
+ }
+ queueSize--;
+ }
+ 
+ updatePixels();
+ }*/
+
+// ideja: https://en.wikipedia.org/wiki/Flood_fill
+>>>>>>> 1d394cf37927b27741b7d11ef3ef23908d0cea1c
 void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali spalva
 {
   if (x >= 0 && y >= 0) {
@@ -122,12 +181,20 @@ void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali 
           stack[stackCount] = stack[0] + 1;
           stackCount++;
         }
+<<<<<<< HEAD
       }
       if (stack[0] > width) {
         if (pixels[stack[0] - width] == what) {
           pixels[stack[0] - width] = with;
           stack[stackCount] = stack[0] - width;
           stackCount++;
+=======
+        if (stack[0] >= width) {
+          if (pixels[stack[0] - width] == what) {
+            stack[stackCount] = stack[0] - width;
+            stackCount++;
+          }
+>>>>>>> 1d394cf37927b27741b7d11ef3ef23908d0cea1c
         }
       }
 
@@ -137,5 +204,9 @@ void floodFill (int x, int y, color what, color with)   //uzpildyti ekrano dali 
       stackCount--;
     }
   }
+<<<<<<< HEAD
   updatePixels();
 }
+=======
+}
+>>>>>>> 1d394cf37927b27741b7d11ef3ef23908d0cea1c
